@@ -46,10 +46,10 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-black px-6 md:px-8 lg:px-12">
+    <section id="about" className="py-20 md:py-28 bg-slate-900 px-6 md:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <h2 ref={titleRef} className="section-title text-center opacity-0 translate-y-10">
-          Our <span className="text-biker-accent">Story</span>
+          Sobre <span className="text-amber-600">Mim</span>
         </h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mt-12">
@@ -59,32 +59,32 @@ const About = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1571188654248-7a89213915f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-              alt="Biker's Way founding team" 
+              src="https://images.unsplash.com/photo-1590086782957-93c06ef21604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+              alt="Dr. Roberto Soares" 
               className="object-cover h-full w-full"
             />
           </div>
           
           <div ref={textRef} className="flex flex-col justify-center opacity-0 translate-y-10">
-            <p className="text-biker-silver text-lg mb-6">
-              Founded in 2023 by a group of passionate riders, Biker's Way began with a simple mission: to create the ultimate platform for motorcycle enthusiasts who live for the thrill of the open road.
+            <p className="text-slate-300 text-lg mb-6">
+              Com mais de 15 anos de experiência, sou especialista em diversas áreas do Direito, dedicando minha carreira à defesa dos direitos e interesses dos meus clientes com ética e profissionalismo.
             </p>
-            <p className="text-biker-silver text-lg mb-6">
-              What started as weekend rides with friends has evolved into a global community of like-minded individuals who share a common passion for motorcycles and the freedom they represent.
+            <p className="text-slate-300 text-lg mb-6">
+              Formado pela Universidade de São Paulo (USP), com mestrado em Direito Civil pela PUC e especialização em Direito Empresarial, trago uma sólida formação acadêmica complementada por vasta experiência prática.
             </p>
-            <p className="text-biker-silver text-lg mb-6">
-              We believe that every ride tells a story, and every road holds an adventure. Our platform is built to help riders discover new routes, connect with fellow enthusiasts, and make the most of their two-wheeled journeys.
+            <p className="text-slate-300 text-lg mb-6">
+              Meu compromisso é oferecer atendimento personalizado, com comunicação clara e objetiva, mantendo os clientes informados em todas as etapas do processo e desenvolvendo estratégias eficazes para cada caso.
             </p>
-            <p className="text-biker-silver text-lg">
-              Whether you're a seasoned rider with decades of experience or just getting started with your first motorcycle, Biker's Way welcomes you to join our community and be part of our growing story.
+            <p className="text-slate-300 text-lg">
+              Acredito que a relação advogado-cliente deve ser baseada na confiança e transparência, por isso trabalho incansavelmente para alcançar os melhores resultados possíveis, sempre respeitando os princípios éticos da advocacia.
             </p>
             
             <div className="mt-8">
               <a 
                 href="#join" 
-                className="inline-block py-3 px-8 bg-biker-accent text-white rounded-sm text-base uppercase tracking-wider font-medium button-hover"
+                className="inline-block py-3 px-8 bg-amber-700 text-white rounded-sm text-base uppercase tracking-wider font-medium hover:bg-amber-800 transition-colors"
               >
-                Join Our Community
+                Agende uma Consulta
               </a>
             </div>
           </div>
