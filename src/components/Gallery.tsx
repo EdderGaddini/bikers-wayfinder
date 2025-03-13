@@ -1,5 +1,7 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useInView } from '@/lib/animations';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const images = [
   {
@@ -35,48 +37,41 @@ const images = [
 ];
 
 const GalleryImage = ({ src, alt, delay }: { src: string; alt: string; delay: string }) => {
-  const imageRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { ref, isInView } = useInView(0.1);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add('animate-fade-in');
-              entry.target.classList.remove('opacity-0');
-            }, parseInt(delay));
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (imageRef.current) {
-      observer.observe(imageRef.current);
+    if (isInView) {
+      const timer = setTimeout(() => {
+        const element = ref.current;
+        if (element) {
+          element.classList.add('animate-fade-in');
+          element.classList.remove('opacity-0');
+        }
+      }, parseInt(delay));
+      
+      return () => clearTimeout(timer);
     }
-
-    return () => {
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current);
-      }
-    };
-  }, [delay]);
+  }, [isInView, delay, ref]);
 
   return (
     <div 
-      ref={imageRef} 
+      ref={ref} 
       className="relative overflow-hidden rounded-sm opacity-0 group aspect-[4/3]"
     >
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-end p-4">
         <span className="text-white font-medium">{alt}</span>
       </div>
+      {!isLoaded && (
+        <Skeleton className="absolute inset-0 bg-gray-800" />
+      )}
       <div className="h-full w-full overflow-hidden">
         <img 
           src={src} 
           alt={alt} 
           className="object-cover h-full w-full transition-transform duration-700 ease-in-out group-hover:scale-110"
           loading="lazy"
+          onLoad={() => setIsLoaded(true)}
         />
       </div>
     </div>
@@ -95,6 +90,12 @@ const Gallery = () => {
             entry.target.classList.add('animate-slide-up');
             entry.target.classList.remove('opacity-0');
             entry.target.classList.remove('translate-y-10');
+            
+            // Ensure animation doesn't reset
+            entry.target.addEventListener('animationend', () => {
+              entry.target.classList.remove('opacity-0');
+              entry.target.classList.remove('translate-y-10');
+            }, { once: true });
           }
         });
       },
@@ -129,7 +130,7 @@ const Gallery = () => {
           Stunning visuals from our community of passionate riders on their unforgettable journeys.
         </p>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {images.map((image, index) => (
             <GalleryImage key={index} {...image} />
           ))}
