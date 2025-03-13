@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -96,6 +99,58 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-white overflow-x-hidden font-sans;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .text-stroke {
+    -webkit-text-stroke: 1px white;
+    color: transparent;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6;
+  }
+  
+  .section-subtitle {
+    @apply text-lg md:text-xl text-biker-silver max-w-3xl mx-auto mb-12;
+  }
+  
+  .button-hover {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+
+  .button-hover::after {
+    content: '';
+    @apply absolute top-0 left-[-100%] w-full h-full bg-white bg-opacity-20 transition-transform duration-300 transform skew-x-[-45deg];
+  }
+
+  .button-hover:hover::after {
+    @apply transform translate-x-[200%];
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:translate-y-[-10px];
+  }
+  
+  .parallax-section {
+    @apply relative overflow-hidden;
+  }
+  
+  .blur-glass {
+    @apply backdrop-blur-md bg-black bg-opacity-20 border border-white border-opacity-10;
   }
 }
