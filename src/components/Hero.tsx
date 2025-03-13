@@ -16,6 +16,12 @@ const Hero = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-in');
+            entry.target.classList.remove('opacity-0');
+            
+            // Ensure animation doesn't reset
+            entry.target.addEventListener('animationend', () => {
+              entry.target.classList.remove('opacity-0');
+            });
           }
         });
       },
@@ -59,7 +65,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div ref={contentRef} className="relative z-20 h-full flex flex-col items-center justify-center px-6 md:px-12 opacity-0">
+      <div ref={contentRef} className="relative z-20 h-full flex flex-col items-center justify-center px-6 md:px-12 opacity-0 transition-opacity duration-1000">
         <div className="text-center max-w-5xl mx-auto">
           <div className="flex flex-col items-center mb-6 sm:mb-8">
             <span className="inline-block py-2 px-4 rounded-sm text-xs md:text-sm tracking-widest uppercase bg-biker-accent text-white mb-8 animate-slide-down">
